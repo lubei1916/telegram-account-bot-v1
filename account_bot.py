@@ -1,4 +1,5 @@
 import pandas as pd
+import os
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 from datetime import datetime
@@ -49,7 +50,8 @@ async def stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     await update.message.reply_text(msg)
 
-app = ApplicationBuilder().token("7969129288:AAEZ6BoBKB3o493i0ALVJzV9PPwzkA7yZdU").build()
+BOT_TOKEN = os.environ.get("BOT_TOKEN")
+app = ApplicationBuilder().token(BOT_TOKEN).build()
 app.add_handler(CommandHandler("record", record))
 app.add_handler(CommandHandler("stats", stats))
 
